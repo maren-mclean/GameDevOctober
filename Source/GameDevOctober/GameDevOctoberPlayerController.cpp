@@ -5,6 +5,7 @@
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "GameDevOctoberCharacter.h"
+#include "HeroComponent.h"
 
 AGameDevOctoberPlayerController::AGameDevOctoberPlayerController()
 {
@@ -28,6 +29,13 @@ void AGameDevOctoberPlayerController::SetupInputComponent()
 	// set up gameplay key bindings
 	Super::SetupInputComponent();
 
+	// Bind Actions to current Hero Abilities
+	InputComponent->BindAction("Q_action", IE_Pressed, this, &AGameDevOctoberPlayerController::CastHeroQAbility);
+	InputComponent->BindAction("W_action", IE_Pressed, this, &AGameDevOctoberPlayerController::CastHeroWAbility);
+	InputComponent->BindAction("E_action", IE_Pressed, this, &AGameDevOctoberPlayerController::CastHeroEAbility);
+	InputComponent->BindAction("R_action", IE_Pressed, this, &AGameDevOctoberPlayerController::CastHeroRAbility);
+
+
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &AGameDevOctoberPlayerController::OnSetDestinationPressed);
 	InputComponent->BindAction("SetDestination", IE_Released, this, &AGameDevOctoberPlayerController::OnSetDestinationReleased);
 
@@ -36,6 +44,26 @@ void AGameDevOctoberPlayerController::SetupInputComponent()
 	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &AGameDevOctoberPlayerController::MoveToTouchLocation);
 
 	InputComponent->BindAction("ResetVR", IE_Pressed, this, &AGameDevOctoberPlayerController::OnResetVR);
+}
+
+void AGameDevOctoberPlayerController::CastHeroQAbility() {
+	UHeroComponent* CurrentHeroComponent = GetHeroComponent();
+	CurrentHeroComponent->CastQAbility();
+}
+
+void AGameDevOctoberPlayerController::CastHeroWAbility() {
+	UHeroComponent* CurrentHeroComponent = GetHeroComponent();
+	CurrentHeroComponent->CastWAbility();
+}
+
+void AGameDevOctoberPlayerController::CastHeroEAbility() {
+	UHeroComponent* CurrentHeroComponent = GetHeroComponent();
+	CurrentHeroComponent->CastEAbility();
+}
+
+void AGameDevOctoberPlayerController::CastHeroRAbility() {
+	UHeroComponent* CurrentHeroComponent = GetHeroComponent();
+	CurrentHeroComponent->CastRAbility();
 }
 
 void AGameDevOctoberPlayerController::OnResetVR()

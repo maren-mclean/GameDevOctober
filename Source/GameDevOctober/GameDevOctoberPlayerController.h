@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "GameDevOctoberCharacter.h"
+#include "HeroComponent.h"
 #include "GameDevOctoberPlayerController.generated.h"
+
 
 UCLASS()
 class AGameDevOctoberPlayerController : public APlayerController
@@ -13,6 +16,20 @@ class AGameDevOctoberPlayerController : public APlayerController
 
 public:
 	AGameDevOctoberPlayerController();
+
+	void CastHeroQAbility();
+
+	void CastHeroWAbility();
+
+	void CastHeroEAbility();
+
+	void CastHeroRAbility();
+
+	// Return current HeroComponent of current Pawn
+	class UHeroComponent * GetHeroComponent() {
+		AGameDevOctoberCharacter* MyPawn = Cast<AGameDevOctoberCharacter>(GetPawn());
+		return MyPawn->GetCurrentHeroComponent();
+	};
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -38,6 +55,8 @@ protected:
 	/** Input handlers for SetDestination action. */
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
+
+
 };
 
 

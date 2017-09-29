@@ -17,6 +17,8 @@ public:
 	// Called every frame.
 	virtual void Tick(float DeltaSeconds) override;
 
+	/** Returns CurrentHeroComponent subobject **/
+	FORCEINLINE class UHeroComponent* GetCurrentHeroComponent() { return CurrentHeroComponent;  }
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
 	/** Returns CameraBoom subobject **/
@@ -25,6 +27,10 @@ public:
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
 
 private:
+	/** Current hero **/
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "HeroComponent", meta = (AllowPrivateAccess = "true"))
+	class UHeroComponent* CurrentHeroComponent;
+
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* TopDownCameraComponent;
@@ -36,5 +42,7 @@ private:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
+
+
 };
 
