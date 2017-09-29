@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "GameDevOctoberCharacter.h"
 #include "HeroComponent.h"
+#include "LuuxHeroComponent.h"
 #include "GameDevOctoberPlayerController.generated.h"
 
 
@@ -29,6 +30,13 @@ public:
 	class UHeroComponent * GetHeroComponent() {
 		AGameDevOctoberCharacter* MyPawn = Cast<AGameDevOctoberCharacter>(GetPawn());
 		return MyPawn->GetCurrentHeroComponent();
+	};
+
+	// Causes Pawn to change its HeroComponent
+	void ChangeHeroComponent() {
+		UClass* newHeroComponentClass = ULuuxHeroComponent::StaticClass();
+		AGameDevOctoberCharacter* MyPawn = Cast<AGameDevOctoberCharacter>(GetPawn());
+		MyPawn->SetCurrentHeroComponent(newHeroComponentClass);
 	};
 
 protected:

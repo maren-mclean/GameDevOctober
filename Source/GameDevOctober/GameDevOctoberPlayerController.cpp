@@ -35,6 +35,8 @@ void AGameDevOctoberPlayerController::SetupInputComponent()
 	InputComponent->BindAction("E_action", IE_Pressed, this, &AGameDevOctoberPlayerController::CastHeroEAbility);
 	InputComponent->BindAction("R_action", IE_Pressed, this, &AGameDevOctoberPlayerController::CastHeroRAbility);
 
+	InputComponent->BindAction("Switch_hero", IE_Pressed, this, &AGameDevOctoberPlayerController::ChangeHeroComponent);
+
 
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &AGameDevOctoberPlayerController::OnSetDestinationPressed);
 	InputComponent->BindAction("SetDestination", IE_Released, this, &AGameDevOctoberPlayerController::OnSetDestinationReleased);

@@ -17,6 +17,9 @@ public:
 	// Called every frame.
 	virtual void Tick(float DeltaSeconds) override;
 
+	/** Sets the CurrentHeroComponent subobject to a new subobject **/
+	void SetCurrentHeroComponent(TSubclassOf<class UHeroComponent> NewCompClass);
+
 	/** Returns CurrentHeroComponent subobject **/
 	FORCEINLINE class UHeroComponent* GetCurrentHeroComponent() { return CurrentHeroComponent;  }
 	/** Returns TopDownCameraComponent subobject **/

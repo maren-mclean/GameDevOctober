@@ -24,7 +24,7 @@ void UHeroComponent::CastRAbility() { GEngine->AddOnScreenDebugMessage(-1, 15.0f
 void UHeroComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
+	AActor* act = GetOwner();
 	// ...
 	
 }
@@ -34,6 +34,7 @@ void UHeroComponent::BeginPlay()
 void UHeroComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	//this->GetOwner()->GetActorLocation().toString()
 
 	// ...
 }

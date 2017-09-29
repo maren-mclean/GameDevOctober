@@ -38,8 +38,6 @@ AGameDevOctoberCharacter::AGameDevOctoberCharacter()
 
 	// Create a Hero Component
 	CurrentHeroComponent = CreateDefaultSubobject<UHeroComponent>(TEXT("CurrentHeroComponent"));
-	//CurrentHeroComponent->RegisterComponent;
-
 
 	// Create a camera...
 	TopDownCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("TopDownCamera"));
@@ -60,6 +58,12 @@ AGameDevOctoberCharacter::AGameDevOctoberCharacter()
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = true;
+}
+
+void AGameDevOctoberCharacter::SetCurrentHeroComponent(TSubclassOf<UHeroComponent> NewCompClass) {
+	CurrentHeroComponent->UnregisterComponent();
+	CurrentHeroComponent = NewObject<UHeroComponent>(this, NewCompClass);
+	CurrentHeroComponent->RegisterComponent();
 }
 
 void AGameDevOctoberCharacter::Tick(float DeltaSeconds)
