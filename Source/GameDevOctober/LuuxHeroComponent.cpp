@@ -29,6 +29,10 @@ void ULuuxHeroComponent::CastWAbility() {
 
 // This object's E ability
 void ULuuxHeroComponent::CastEAbility() {
+
+	AActor* Char = GetOwner();
+	USceneComponent* RootComp = Char->GetRootComponent();
+	FVector CompLocation = RootComp->GetComponentLocation();
 	//TODO: Jump in target direction a max distance
 	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Luux E casted"); 
 }
